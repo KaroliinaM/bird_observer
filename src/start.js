@@ -1,30 +1,25 @@
 const electron=require('electron')
 const app=electron.app
 const BrowserWindow=electron.BrowserWindow
-
+const Datastore = require('nedb')
 const express = require('express')
 const expr = express()
 const cors = require('cors')
 const path=require('path')
 const url=require('url')
-expr.use(cors())
+const bodyParser=require('body-parser')
+expr.use(bodyParser.json())
 
+
+expr.use(cors())
+const db = new Datastore({ filename: './observations.db', autoload: true })
 let appWindow
 
-let obs=[{
-  id:1,
-  species: "Varpunen",
-  notes: "Lintulaudalla",
-  rarity: "common",
-  timestamp: 1234567
-},
-{
-id:2,
-species: "Harakka",
-notes: "lähimetsässä",
-rarity: "common",
-timestamp: 1234567
-}]
+let obs=[]
+
+db.find({}, function (err, docs) {
+  obs=docs
+})
 
 
 function createWindow() {
@@ -37,6 +32,12 @@ function createWindow() {
   appWindow.webContents.openDevTools()
   expr.get('/observation', (req, res) => {
   res.json(obs)
+  })
+  expr.post('/observation', (req, res) => {
+    const obs=req.body
+    db.insert(obs, function (err, newObs) {
+      res.json(newObs)
+    })
   })
   const PORT = 3001
 expr.listen(PORT, () => {
