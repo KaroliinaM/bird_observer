@@ -4,7 +4,7 @@ Application for recording bird observations
 
 ## installation
 
-Download the source code from this page. Install [npm](https://www.npmjs.com/get-npm) and run on command line in the root folder <strong>npm install</strong> and <strong>npm run build</strong>. Command <strong>npm start</strong> opens the development mode and command <strong>electron-packager .</strong> should create the executable file bird_observer(Linux) or bird_observer.exe(Windows)
+Download the source code from this page. Install [npm](https://www.npmjs.com/get-npm) and run on command line in the root folder <strong>npm install</strong> and <strong>npm run build</strong>. Command <strong>npm start</strong> opens the development mode and command <strong>electron-packager .</strong> should create the executable file bird_observer(Linux) or bird_observer.exe(Windows). The package is created for the operating system the command is run on.
 
 ## use
 
