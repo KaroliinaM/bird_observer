@@ -25,11 +25,11 @@ db.find({}, function (err, docs) {
 function createWindow() {
   appWindow=new BrowserWindow({ width: 800, height: 600 })
   appWindow.loadURL(process.env.ELECTRON_START_URL || url.format({
-    pathname: path.join(__dirname, '/..build/index.html'),
+    pathname: path.join(__dirname, '/../build/index.html'),
     protocol: 'file',
     slashes: true
   }))
-  appWindow.webContents.openDevTools()
+  // appWindow.webContents.openDevTools()
   expr.get('/observation', (req, res) => {
   res.json(obs)
   })

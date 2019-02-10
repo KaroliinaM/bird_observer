@@ -38,7 +38,6 @@ class App extends React.Component{
     axios
       .post('http://localhost:3001/observation', newObservation)
       .then(response => {
-        console.log(response.data)
         this.setState({
           observation:this.state.observation.concat(response.data),
           newSpecies: "",
@@ -49,14 +48,10 @@ class App extends React.Component{
   }
   obsName=(event)=> {
     event.preventDefault()
-    console.log(event.target.value)
     this.setState({[event.target.name]:event.target.value})
-    console.log(this.state.newRarity)
   }
   changeSelection=(event)=> {
-    console.log(event.target.value)
     this.setState({newRarity:event.target.value})
-    console.log(this.state.newRarity)
   }
   resetFields=(event)=> {
     event.preventDefault()
